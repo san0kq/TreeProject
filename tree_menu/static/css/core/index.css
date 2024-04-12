@@ -20,19 +20,25 @@
     margin-left: 30px;
 }
 .menu__element {
-    width: 300px;
+    width: 430px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1200px) {
     .content {
         width: auto;
+        margin-inline: 50px;
+        row-gap: 100px;
     }
-    .content__logo-image {
-        width: 300px;
-        height: auto;
+}
+
+@media (max-width: 600px) {
+    .menu__element {
+        width: 100%;
     }
-    p:first-child {
-        margin-inline: 20px;
-        text-align: center;
+}
+
+@media (max-width: 450px) {
+    .menu__element {
+        font-size: 13px;
     }
 }
