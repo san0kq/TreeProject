@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+{% load draw_menu %}
+<html id="html">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" href="{% static "image/favicon.ico" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}" type=”image/x-icon”>
+    {% block static %}{% endblock static %}
+  </head>
+  <body>
+    <header class="header">
+      <a class="header__logo" href="/">
+        <img 
+          class="header__image"
+          src="{% static "image/logo-text.png" %}"
+          alt="logo"
+          width="131px"
+          height="18px"
+          loading="lazy"
+        />
+      </a>
+      <nav class="header__menu">
+        <ul class="header__menu-list">
+          {% if user.is_authenticated %}
+          <li class="header__menu-element">
+            <a class="header__menu-link link link-products" href="#">Products</a>
+          </li>
+          <li class="header__menu-element">
+            <a class="header__menu-link link link-profile" href="#">Profile</a>
+          </li>
+          <li class="header__menu-element">
+            <a class="header__menu-link link link-cabinet" href="#">Cabinet</a>
+          </li>
+          <li class="header__menu-element action">
+            <a class="header__menu-link link link-deposite" href="#">Top up</a>
+          </li>
+          <li class="header__menu-element action">
+            <a class="header__menu-link link link" href="#">Log out</a>
+          </li>
+          {% else %}
+          <li class="header__menu-element action login">
+            <a class="header__menu-link link link" href="#">Log in</a>
+          </li>
+          <li class="header__menu-element action signup">
+            <a class="header__menu-link link" href="#">Sign up</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      <div class="header__action">
+      {% if user.is_authenticated %}
+      <a class="header__action-link link button" href="#">Top up</a>
+      <a class="header__action-link link button" href="#">Log out</a>
+      {% else %}
+      <a class="header__action-link link button login" href="#">Log in</a>
+      <a class="header__action-link link button signup" href="#">Sign up</a>
+      {% endif %}
+      <div class="header__action-burger">
+        <span class="visually-hidden">Open menu</span>
+        <span></span>
+      </div>
+      </div>
+    </header>
+    <main>
+      {% draw_menu 'Menu1' %}
+      {% block main %}{% endblock main %}
+    </main>
+  {% block body %}
+  {% endblock body %}
+  </body> 
+  {% block script %}
+  {% endblock script %}
+</html>
